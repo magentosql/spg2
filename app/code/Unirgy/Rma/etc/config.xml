@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <Unirgy_Rma>
+            <usimpleup>
+                <remote>http://download.unirgy.com/simple/client_api/version/</remote>
+                <changelog>http://unirgy.com/support/portal/announcements</changelog>
+            </usimpleup>
+        </Unirgy_Rma>
+        <sales_email>
+            <rma>
+                <enabled>1</enabled>
+                <template>sales_email_rma_template</template>
+                <identity>sales</identity>
+                <copy_method>bcc</copy_method>
+            </rma>
+            <rma_comment>
+                <enabled>1</enabled>
+                <template>sales_email_rma_comment_template</template>
+                <identity>sales</identity>
+                <copy_method>bcc</copy_method>
+            </rma_comment>
+        </sales_email>
+        <urma>
+            <message>
+                <customer_success>Return(s) successfully created</customer_success>
+                <customer_no_items>No items selected to return</customer_no_items>
+                <new_instructions_html>Please select items you want to return by changing qty box to non-zero value in
+                    respective rows and items conditions. Also select reason to return. And leave comments if necessary.
+                    Once submit we will send you further instructions.
+                </new_instructions_html>
+            </message>
+            <general>
+                <new_rma_vendor_email_template>urma_general_new_rma_vendor_email_template</new_rma_vendor_email_template>
+                <rma_comment_vendor_email_template>urma_general_rma_comment_vendor_email_template</rma_comment_vendor_email_template>
+                <customer_new_hide_order_info>1</customer_new_hide_order_info>
+                <customer_hide_order_info>1</customer_hide_order_info>
+                <vendor_comments_receiver>general</vendor_comments_receiver>
+                <vendor_comments_subject>A comment from {{vendor_name}} regarding RMA # {{rma_id}} for order #
+                    {{order_id}}
+                </vendor_comments_subject>
+                <vendor_comments_template>Dear Administrator,
+
+                    A dropship vendor has just submitted a comment regarding RMA.
+
+                    Vendor Name: {{vendor_name}}
+                    Order ID: {{order_id}}
+                    RMA ID: {{rma_id}}
+
+                    Vendor URL: {{vendor_url}}
+                    Order URL: {{order_url}}
+                    RMA URL: {{rma_url}}
+
+                    Comment: {{comment}}
+                </vendor_comments_template>
+                <statuses>[{"code":"pending","title":"Pending","customer_notes":"","allow_resolution_notes":"0","show_receiver":"0","sort_order":"0"},{"code":"approved","title":"Approved","customer_notes":"","allow_resolution_notes":"1","show_receiver":"1","sort_order":"10"},{"code":"acknowledged","title":"Acknowledged","customer_notes":"","allow_resolution_notes":"0","show_receiver":"0","sort_order":"20"},{"code":"received","title":"Received","customer_notes":"","allow_resolution_notes":"1","show_receiver":"1","sort_order":"30"},{"code":"declined","title":"Declined","customer_notes":"","allow_resolution_notes":"1","show_receiver":"0","sort_order":"40"}]</statuses>
+                <reasons>[{"code":"exchange","title":"Exchange","sort_order":"0"},{"code":"refund","title":"Refund","sort_order":"10"}]</reasons>
+                <item_conditions>[{"code":"unopened","title":"Unopened","sort_order":"0"},{"code":"opened","title":"Opened","sort_order":"10"},{"code":"damaged","title":"Damaged","sort_order":"20"}]</item_conditions>
+            </general>
+            <fedex>
+                <fedex_test_mode>1</fedex_test_mode>
+                <fedex_pdf_label_width>4</fedex_pdf_label_width>
+                <fedex_pdf_label_height>6</fedex_pdf_label_height>
+            </fedex>
+            <endicia>
+                <endicia_api_url>https://elstestserver.endicia.com/LabelService/EwsLabelService.asmx</endicia_api_url>
+                <endicia_pdf_label_width>4</endicia_pdf_label_width>
+                <endicia_pdf_label_height>6</endicia_pdf_label_height>
+                <endicia_stealth>1</endicia_stealth>
+            </endicia>
+            <ups>
+                <ups_api_url>https://wwwcie.ups.com/ups.app/xml/</ups_api_url>
+                <ups_pdf_label_width>4</ups_pdf_label_width>
+                <ups_pdf_label_height>7</ups_pdf_label_height>
+            </ups>
+        </urma>
+    </default>
+</config>

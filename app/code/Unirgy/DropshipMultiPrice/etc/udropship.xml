@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config>
+    <vendor>
+        <fields>
+            <def_product_promo_title translate="label">
+                <label>Default Product Promo Title</label>
+                <type>text</type>
+                <fieldset>microsite</fieldset>
+                <position>250</position>
+            </def_product_promo_title>
+        </fields>
+    </vendor>
+    <product_state>
+        <new translate="label">
+            <label>New</label>
+            <extended>
+                <new translate="label"><label>New</label><is_default>true</is_default></new>
+            </extended>
+        </new>
+        <used translate="label">
+            <label>Used</label>
+            <extended>
+                <used_as_new translate="label"><label>Used: As new</label></used_as_new>
+                <used_very_good translate="label"><label>Used: Very Good</label></used_very_good>
+                <used_good translate="label"><label>Used: Good</label></used_good>
+                <used_just_ok translate="label"><label>Used: Just OK</label></used_just_ok>
+            </extended>
+        </used>
+    </product_state>
+</config>

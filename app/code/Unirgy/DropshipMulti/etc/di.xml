@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Catalog\Controller\Adminhtml\Product\Initialization\Helper">
+        <plugin name="udmultiCatalogProductPrepareSave" type="Unirgy\DropshipMulti\Plugin\ProductInitialization" />
+    </type>
+    <preference for="Magento\CatalogInventory\Model\Indexer\Stock\Action\Full" type="Unirgy\DropshipMulti\Model\StockIndexerAction\Full"/>
+    <preference for="Magento\CatalogInventory\Model\Indexer\Stock\Action\Rows" type="Unirgy\DropshipMulti\Model\StockIndexerAction\Rows"/>
+    <preference for="Magento\CatalogInventory\Model\Indexer\Stock\Action\Row" type="Unirgy\DropshipMulti\Model\StockIndexerAction\Row"/>
+    <type name="Unirgy\DropshipMulti\Model\Decision\LeastVendorsLowestCost">
+        <arguments>
+            <argument name="stockAvailability" xsi:type="object">Unirgy\DropshipMulti\Model\Stock\Availability</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Catalog\Controller\Adminhtml\Product\Action\Attribute\Edit">
+        <arguments>
+            <argument name="collectionFactory" xsi:type="object">Unirgy\DropshipMulti\Model\ResourceModel\SkipProductCollectionFactory</argument>
+        </arguments>
+    </type>
+    <type name="Magento\CatalogUrlRewrite\Observer\UrlRewriteHandler">
+        <arguments>
+            <argument name="productCollectionFactory" xsi:type="object">Unirgy\DropshipMulti\Model\ResourceModel\SkipProductCollectionFactory</argument>
+        </arguments>
+    </type>
+    <type name="Magento\CatalogRule\Model\Indexer\IndexBuilder">
+        <arguments>
+            <argument name="productFactory" xsi:type="object">Unirgy\DropshipMulti\Model\SkipProductFactory</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Catalog\Block\Adminhtml\Category\Tab\Product">
+        <arguments>
+            <argument name="productFactory" xsi:type="object">Unirgy\DropshipMulti\Model\SkipProductFactory</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="initSkipCollectionUdmultiLoad" type="Unirgy\DropshipMulti\Plugin\Product" />
+    </type>
+    <type name="Magento\Catalog\Model\Category">
+        <plugin name="initSkipUdmultiLoad" type="Unirgy\DropshipMulti\Plugin\Category" />
+    </type>
+    <type name="\Magento\CatalogUrlRewrite\Observer\UrlRewriteHandler">
+        <plugin name="initSkipUdmultiLoad" type="Unirgy\DropshipMulti\Plugin\UrlRewriteHandler" />
+    </type>
+</config>

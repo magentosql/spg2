@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_action_layout_render_before_udropshipadmin_adminhtml_vendor_index">
+        <observer name="udmulti" instance="Unirgy\DropshipMulti\Observer\AdminhtmlVersion"/>
+    </event>
+    <event name="catalog_product_load_after">
+        <observer name="udmulti_admin" instance="Unirgy\DropshipMulti\Observer\CatalogProductLoadAfterAdmin"/>
+    </event>
+    <event name="catalog_product_collection_load_after">
+        <observer name="udmulti_admin" instance="Unirgy\DropshipMulti\Observer\CatalogProductCollectionLoadAfterAdmin"/>
+    </event>
+    <event name="sales_quote_item_collection_products_after_load">
+        <observer name="udmulti_admin"
+                  instance="Unirgy\DropshipMulti\Observer\SalesQuoteItemCollectionProductsAfterLoadAdmin"/>
+    </event>
+    <event name="udropship_adminhtml_vendor_edit_prepare_form">
+        <observer name="udmulti_admin"
+                  instance="Unirgy\DropshipMulti\Observer\UdropshipAdminhtmlVendorEditPrepareForm"/>
+    </event>
+    <event name="controller_action_predispatch_catalog_category_edit">
+        <observer name="udmulti_admin"
+                  instance="Unirgy\DropshipMulti\Observer\CategoryEditAdmin"/>
+    </event>
+    <event name="controller_action_predispatch_catalog_category_save">
+        <observer name="udmulti_admin"
+                  instance="Unirgy\DropshipMulti\Observer\CategoryEditAdmin"/>
+    </event>
+</config>

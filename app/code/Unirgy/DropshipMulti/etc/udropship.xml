@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config>
+    <stockcheck_methods>
+        <local_multi translate="title">
+            <callback>Unirgy\DropshipMulti\Model\Stock\Availability::checkLocalStockLevel</callback>
+        </local_multi>
+    </stockcheck_methods>
+
+    <availability_methods>
+        <least_vendors_lowest_cost translate="title" module="udmulti">
+            <active>true</active>
+            <multi>true</multi>
+            <label>Multi Vendor: Least Packages + Lowest Cost</label>
+            <callback>Unirgy\DropshipMulti\Model\Decision\LeastVendorsLowestCost::apply</callback>
+            <collectstock_callback>Unirgy\DropshipMulti\Model\Decision\LeastVendorsLowestCost::collectStockLevels</collectstock_callback>
+        </least_vendors_lowest_cost>
+    </availability_methods>
+</config>

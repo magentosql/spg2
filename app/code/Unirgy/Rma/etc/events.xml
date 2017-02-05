@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="config_data_dev_grid_async_indexing_disabled">
+        <observer name="sales_grid_order_urma_async_insert" instance="urmaIndexGridAsyncInsertObserver" />
+    </event>
+    <event name="urma_rma_process_relation">
+        <observer name="sales_grid_order_urma_sync_insert" instance="urmaIndexGridSyncInsert" />
+    </event>
+    <event name="urma_rma_delete_after">
+        <observer name="sales_grid_order_urma_sync_remove" instance="urmaIndexGridSyncRemove" />
+    </event>
+</config>

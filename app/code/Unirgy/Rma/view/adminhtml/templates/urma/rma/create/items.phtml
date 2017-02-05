@@ -1,0 +1,99 @@
+<?php $reasonOptions = \Magento\Framework\App\ObjectManager::getInstance()->get('Unirgy\Rma\Model\Source')->setPath('rma_reason')->toOptionHash(true) ?>
+<section class="admin__page-section">
+    <div class="admin__page-section-title">
+        <span class="title"><?php /* @escapeNotVerified */ echo __('Items to Return') ?></span>
+    </div>
+    <div class="admin__table-wrapper">
+        <table class="data-table admin__table-primary order-shipment-table">
+            <thead>
+            <tr class="headings">
+                <th class="col-product"><?php echo __('Product') ?></th>
+                <th class="col-ordered-qty"><?php echo __('Qty') ?></th>
+                <th class="col-condition"><?php echo __('Condition') ?></th>
+                <th class="col-qty last"><span class="nobr"><?php echo __('Qty to Return') ?></span></th>
+            </tr>
+            </thead>
+            <?php $_items = $this->getRma()->getAllItems() ?>
+            <?php $_i=0;foreach ($_items as $_item): if ($_item->getOrderItem()->getIsVirtual() || $_item->getOrderItem()->getParentItem()): continue; endif; $_i++ ?>
+                <tbody class="<?php echo $_i%2?'odd':'even' ?>">
+                <?php echo $this->getItemHtml($_item) ?>
+                <?php echo $this->getItemExtraInfoHtml($_item->getOrderItem()) ?>
+                </tbody>
+            <?php endforeach; ?>
+        </table>
+    </div>
+</section>
+<section class="admin__page-section">
+    <div class="admin__page-section-title">
+        <span class="title"><?php /* @escapeNotVerified */ echo __('Return Total') ?></span>
+    </div>
+    <div class="admin__page-section-content order-comments-history">
+        <div class="admin__page-section-item">
+            <div class="admin__page-section-item-title">
+                <span class="title"><?php /* @escapeNotVerified */ echo __('Return Comments') ?></span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <div id="order-history_form" class="admin__field">
+                    <label class="normal" for="rma_comment_text"><?php echo __('Comment Text') ?></label>
+                    <div class="admin__field-control">
+                        <textarea id="rma_comment_text" name="rma[comment_text]" rows="3" cols="5" style="height:6em; width:99%;"><?php echo $this->getRma()->getCommentText(); ?></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="admin__page-section-item order-totals urma-totals">
+        <div class="admin__page-section-item-title">
+            <span class="title"><?php /* @escapeNotVerified */ echo __('Return Totals') ?></span>
+        </div>
+        <div class="order-totals-actions">
+            <div class="field choice admin__field admin__field-option">
+                <label class="normal" for="rma-reason"><strong>Reason to Return</strong></label>
+                <select id="rma-reason" class="validate-select" name="rma[rma_reason]">
+                    <?php foreach ($reasonOptions as $rCode=>$rTitle): ?>
+                        <option value="<?php echo $rCode?>"><?php echo $this->escapeHtml($rTitle)?></option>
+                    <?php endforeach ?>
+                </select>
+            </div>
+            <div class="field choice admin__field admin__field-option">
+                <label class="normal" for="notify_customer"><?php echo __('Append Comments') ?></label>
+                <input id="notify_customer" name="rma[comment_customer_notify]" value="1" type="checkbox" />
+            </div>
+            <div class="field choice admin__field admin__field-option">
+                <label class="normal" for="send_email"><?php echo __('Email Copy of Return') ?></label>
+                <input id="send_email" name="rma[send_email]" value="1" type="checkbox" />
+            </div>
+            <div class="actions">
+                <?php echo $this->getChildHtml('submit_button') ?>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="clear"></div>
+<script type="text/javascript">
+    //<![CDATA[
+
+    require(["jquery", "prototype"], function(jQuery) {
+        var sendEmailCheckbox = $('send_email');
+        if (sendEmailCheckbox) {
+            var notifyCustomerCheckbox = $('notify_customer');
+            var rmaCommentText = $('rma_comment_text');
+            Event.observe(sendEmailCheckbox, 'change', bindSendEmail);
+            bindSendEmail();
+        }
+        function bindSendEmail()
+        {
+            if (sendEmailCheckbox.checked == true) {
+                notifyCustomerCheckbox.disabled = false;
+                //rmaCommentText.disabled = false;
+            }
+            else {
+                notifyCustomerCheckbox.disabled = true;
+                //rmaCommentText.disabled = true;
+            }
+        }
+    });
+
+    //]]>
+</script>

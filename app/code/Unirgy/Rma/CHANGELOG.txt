@@ -1,0 +1,67 @@
+===== 3.1.9 =====
+  * Fixed orphaned now() reference in Rma\Model\Label\Batch.php
+
+===== 3.1.8 =====
+  * Fixed afterDownloadSubmit wrong reference in vendor portal shipments grid
+  * Fixed labels street address field usage
+
+===== 3.1.7 =====
+  * Fixed https links in notification emails
+
+===== 3.1.6 =====
+  * Fixed generate label
+
+===== 3.1.5 =====
+  * Fixed items renderer in admin rma view
+
+===== 3.1.4 =====
+  * Fixed messages display during create RMA from customer area
+
+===== 3.1.3 =====
+  * Fixed export admin rma grid in xml
+
+===== 3.1.2 =====
+  * Fixed massaction status change
+
+===== 2.4.1 =====
+  * CE 1.9.2.2 compatibility vendor portal filter fix
+
+===== 2.4.0 =====
+  * CE 1.9.2.2 compatibility
+
+===== 2.1.0 =====
+  * Central translations file
+  * Fixed back link in create uReturn page
+
+==== 2.0.0 =====
+  * Major release
+  * Added view rma link in customer area orders tables
+  * Fixed null rma_status (pending used if null)
+
+===== 1.2.5 =====
+  * Added order id and order date in vendor portal rma grid
+  * Added vendor sku in new RMA vendor notification emails
+
+===== 1.2.4 =====
+  * Fixed enable/disable configuration check for rma email sending
+  * Fixed tracking popup display
+  * Fixed references to shipment and udpo
+
+===== 1.2.3 =====
+  * Fixed status filter in admin rma grid
+
+===== 1.2.2 =====
+  * Added limitation to create RMA only once for item
+
+===== 1.2.1 =====
+  * Fixed vendors comments view
+  * Fixed admin custom permissions check
+
+===== 1.2.0 =====
+  * Added secure url for urma/vendor
+  * Added request RMA link on orders list page
+
+===== 1.1.0 =====
+  * Fixed usage of multiple carrier to print labels
+
+===== 1.0 - Initial release =====

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+  <body>
+    <reference name="customer_account_navigation">
+      <action method="addLink">
+        <arguments>
+          <argument xsi:type="string" name="name">udsell_vendor</argument>
+          <argument xsi:type="array" name="path"/>
+          <argument xsi:type="string" name="label">Vendor Portal</argument>
+        </arguments>
+      </action>
+    </reference>
+  </body>
+</page>

@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="udropship_carrier_collect_before">
+        <observer name="udmulti" instance="Unirgy\DropshipMulti\Observer\UdropshipCarrierCollectBefore"/>
+    </event>
+    <event name="udsplit_carrier_collect_before">
+        <observer name="udmulti" instance="Unirgy\DropshipMulti\Observer\UdropshipCarrierCollectBefore"/>
+    </event>
+    <event name="controller_action_predispatch_adminhtml_import_start">
+        <observer name="udmulti" instance="Unirgy\DropshipMulti\Observer\TurnOffUdmultiLoadToCollection"/>
+    </event>
+    <event name="controller_action_postdispatch_adminhtml_import_start">
+        <observer name="udmulti" instance="Unirgy\DropshipMulti\Observer\TurnOnUdmultiLoadToCollection"/>
+    </event>
+    <event name="controller_front_init_before">
+        <observer name="udmulti" instance="Unirgy\DropshipMulti\Observer\ControllerFrontInitBefore"/>
+    </event>
+    <event name="udropship_shipment_assign_vendor_skus">
+        <observer name="udmulti" instance="Unirgy\DropshipMulti\Observer\UdropshipShipmentAssignVendorSkus"/>
+    </event>
+    <event name="udpo_po_assign_vendor_skus">
+        <observer name="udmulti" instance="Unirgy\DropshipMulti\Observer\UdpoPoAssignVendorSkus"/>
+    </event>
+    <event name="udropship_po_add_vendor_skus">
+        <observer name="udmulti" instance="Unirgy\DropshipMulti\Observer\UdropshipPoAddVendorSkus"/>
+    </event>
+    <event name="sales_quote_item_set_product">
+        <observer name="udmulti" instance="Unirgy\DropshipMulti\Observer\SalesQuoteItemSetProduct"/>
+    </event>
+    <event name="catalog_product_save_after">
+        <observer name="inventory" instance="Unirgy\DropshipMulti\Observer\CatalogProductSaveAfter"/>
+    </event>
+    <event name="sales_order_creditmemo_save_after">
+        <observer name="inventory" instance="Unirgy\DropshipMulti\Observer\RefundOrderInventory"/>
+    </event>
+    <event name="sales_order_item_cancel">
+        <observer name="inventory" instance="Unirgy\DropshipMulti\Observer\CancelOrderItem"/>
+    </event>
+    <event name="sales_model_service_quote_submit_before">
+        <observer name="inventory" instance="Unirgy\DropshipMulti\Observer\SubtractQuoteInventory"/>
+    </event>
+    <event name="sales_model_service_quote_submit_failure">
+        <observer name="inventory" instance="Unirgy\DropshipMulti\Observer\RevertQuoteInventory"/>
+    </event>
+    <event name="restore_quote">
+        <observer name="inventory" instance="Unirgy\DropshipMulti\Observer\RevertQuoteInventory"/>
+    </event>
+    <event name="checkout_submit_all_after">
+        <observer name="inventory" instance="Unirgy\DropshipMulti\Observer\CheckoutAllSubmitAfter"/>
+    </event>
+    <event name="sales_quote_item_qty_set_after">
+        <observer name="inventory" instance="Unirgy\DropshipMulti\Observer\QuoteItemQtySetAfter"/>
+    </event>
+</config>

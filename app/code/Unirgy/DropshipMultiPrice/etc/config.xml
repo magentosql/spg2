@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <Unirgy_DropshipMultiPrice>
+            <usimpleup>
+                <remote>http://download.unirgy.com/simple/client_api/version/</remote>
+                <changelog>http://unirgy.com/support/portal/announcements</changelog>
+            </usimpleup>
+        </Unirgy_DropshipMultiPrice>
+        <udropship>
+            <stock>
+                <availability>least_vendors_lowest_cost</availability>
+                <reassign_availability>least_vendors_lowest_cost</reassign_availability>
+            </stock>
+        </udropship>
+    </default>
+</config>

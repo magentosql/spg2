@@ -1,0 +1,45 @@
+<?php
+/**
+ * @category    design
+ * @package     monster_default
+ * @copyright   Copyright (c) 2011 Monster Market. (http://www.monstermarket.com)
+ */
+/**
+ * Product view template
+ *
+ * @see \Magento\Catalog\Block\Product\View
+ * @see \Magento\Review\Block\Product\View
+ */
+?>
+<?php
+    $_helper = \Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Catalog\Helper\Output');
+    $_product = $this->getProduct();
+    if ($_product) {
+	    $_v = \Magento\Framework\App\ObjectManager::getInstance()->get('Unirgy\Dropship\Helper\Data')->getVendor($_product);
+	} else {
+	    $_v = \Magento\Framework\App\ObjectManager::getInstance()->get('Unirgy\DropshipMicrosite\Helper\Data')->getCurrentVendor();
+	}
+?>
+<div id="messages_product_view"><?php echo $this->getLayout()->getMessagesBlock()->toHtml(); ?></div>
+<div class="product-view product-sell-view">
+    <div class="product-sell-header generic-box">
+        <div class="no-display">
+            <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+            <input type="hidden" name="related_product" id="related-products-field" value="" />
+        </div>
+        <?php
+        $productImage = $block->getImage($_product, 'product_page_image_small');
+        ?>
+        <?php // Product Image ?>
+        <a href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
+            <?php echo $productImage->toHtml(); ?>
+        </a>
+        <div class="product-name">
+            <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+        </div>
+        <p>#<?php echo $_product->getSku(); ?></p>
+    </div>
+	<div class="product-sell-content">
+    	<?php echo $this->getChildHtml('product.sell') ?>
+	</div>
+</div>

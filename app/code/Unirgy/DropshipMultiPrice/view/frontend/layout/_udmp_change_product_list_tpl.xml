@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+  <body>
+    <reference name="product_list">
+      <action method="setTemplate">
+        <arguments>
+          <argument xsi:type="string" name="template">Unirgy_DropshipMultiPrice::udmultiprice/product/list.phtml</argument>
+        </arguments>
+      </action>
+    </reference>
+  </body>
+</page>

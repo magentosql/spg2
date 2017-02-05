@@ -7,16 +7,8 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceContainer name="footer">
-            <container name="cms_footer_links_container" label="CMS Footer Links" htmlTag="div" htmlClass="links" before="footer_links" remove="true" />
-        </referenceContainer>
-        <referenceBlock name="footer_links" remove="true">
-            <block class="Magento\Framework\View\Element\Html\Link\Current" name="privacy-policy-link">
-                <arguments>
-                    <argument name="label" xsi:type="string">Privacy and Cookie Policy</argument>
-                    <argument name="path" xsi:type="string">privacy-policy-cookie-restriction-mode</argument>
-                </arguments>
-            </block>
-        </referenceBlock>
+
+        <referenceContainer name="cms_footer_links_container" label="CMS Footer Links" htmlTag="div" htmlClass="links" before="footer_links" remove="true" />
+        <referenceBlock name="footer_links" remove="true"/>
     </body>
 </page>

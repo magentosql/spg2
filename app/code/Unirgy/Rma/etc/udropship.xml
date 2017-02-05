@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<config>
+    <vendor>
+        <fieldsets>
+            <rma>
+                <legend>Returns</legend>
+                <position>500</position>
+            </rma>
+            <rma_fedex>
+                <legend>Returns Fedex Specific</legend>
+                <position>520</position>
+            </rma_fedex>
+            <rma_endicia>
+                <legend>Returns Endicia Specific</legend>
+                <position>540</position>
+            </rma_endicia>
+            <rma_ups>
+                <legend>Returns UPS Specific</legend>
+                <position>560</position>
+            </rma_ups>
+        </fieldsets>
+        <fields>
+            <vendor_rma_grid_sortby translate="label">
+                <label>Default RMA sort by in vendor interface</label>
+                <type>select</type>
+                <fieldset>integration</fieldset>
+                <source_model>\Unirgy\Rma\Model\Source</source_model>
+                <position>61</position>
+            </vendor_rma_grid_sortby>
+            <vendor_rma_grid_sortdir translate="label">
+                <label>Default RMA sort direction in vendor interface</label>
+                <type>select</type>
+                <fieldset>integration</fieldset>
+                <source_model>\Unirgy\Rma\Model\Source</source_model>
+                <position>61</position>
+            </vendor_rma_grid_sortdir>
+            <rma_use_fedex_account translate="label">
+                <label>Use FedEx account for Returns</label>
+                <type>select</type>
+                <fieldset>rma_fedex</fieldset>
+                <source_model>\Unirgy\Rma\Model\Source</source_model>
+                <position>10</position>
+                <default>global</default>
+            </rma_use_fedex_account>
+            <rma_use_endicia_account translate="label">
+                <label>Use Endicia account for Returns</label>
+                <type>select</type>
+                <fieldset>rma_endicia</fieldset>
+                <source_model>\Unirgy\Rma\Model\Source</source_model>
+                <position>10</position>
+                <default>global</default>
+            </rma_use_endicia_account>
+            <rma_use_ups_account translate="label">
+                <label>Use UPS account for Returns</label>
+                <type>select</type>
+                <fieldset>rma_ups</fieldset>
+                <source_model>\Unirgy\Rma\Model\Source</source_model>
+                <position>10</position>
+                <default>global</default>
+            </rma_use_ups_account>
+        </fields>
+    </vendor>
+</config>

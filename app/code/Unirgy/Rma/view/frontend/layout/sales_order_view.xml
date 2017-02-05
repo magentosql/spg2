@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="sales.order.info.buttons">
+            <action method="setTemplate">
+                <argument xsi:type="string" name="template">Unirgy_Rma::urma/sales/order/info/buttons.phtml</argument>
+            </action>
+        </referenceBlock>
+        <!--referenceBlock name="sales.order.info">
+            <action method="setTemplate">
+                <argument xsi:type="string" name="template">Unirgy_Rma::urma/sales/order/info.phtml</argument>
+            </action>
+        </referenceBlock-->
+    </body>
+</page>

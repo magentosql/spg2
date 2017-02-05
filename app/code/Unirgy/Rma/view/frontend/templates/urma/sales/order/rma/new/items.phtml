@@ -1,0 +1,70 @@
+<?php
+/** @var \Unirgy\Dropship\Helper\Data $hlp */
+$hlp = \Magento\Framework\App\ObjectManager::getInstance()->get('Unirgy\Dropship\Helper\Data');
+/** @var \Unirgy\Rma\Helper\Data $rmaHlp */
+$rmaHlp = \Magento\Framework\App\ObjectManager::getInstance()->get('Unirgy\Rma\Helper\Data');
+$_order = $this->getOrder();
+$reasonOptions = $rmaHlp->src()->setPath('rma_reason')->toOptionHash(true);
+$rmaHlp->initOrderRmasCollection($_order);
+$_rma = \Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Framework\Registry')->registry('current_rma');
+?>
+<div class="order-details-items shipments">
+	<div class="order-title">
+		<strong><?php echo __('Create New RMA') ?></strong>
+	</div>
+
+	<div class="block">
+		<div class="block-content">
+				<div class="box box-order-shipping-address">
+					<strong class="box-title"><span><?php echo __('Instructions') ?></span></strong>
+					<div class="box-content">
+						<?php echo $hlp->getScopeConfig('urma/message/new_instructions_html'); ?>
+					</div>
+				</div>
+		</div>
+	</div>
+
+<form id="new-rma-form" action="<?php echo $this->getUrl('*/*/saveRma')?>" method="post">
+<input type="hidden" name="order_id" value="<?php echo $_order->getId()?>">
+<div class="table-wrapper order-items-urma">
+	<table class="data table table-order-items urma" id="new-urma-table">
+		<caption class="table-caption"><?php /* @escapeNotVerified */ echo __('Items To Return') ?></caption>
+	    <thead>
+	        <tr>
+	            <th><?php echo __('Product Name') ?></th>
+	            <th><?php echo __('SKU') ?></th>
+                <th><?php echo __('Condition') ?></th>
+	            <th class="a-center"><span class="nobr"><?php echo __('Qty') ?></span></th>
+	        </tr>
+	    </thead>
+	    <?php $_items = $_rma->getAllItems(); ?>
+	    <?php $_count = count($_items) ?>
+	    <?php foreach ($_items as $_item): ?>
+	    <?php if ($_item->getOrderItem()->getParentItem()) continue; ?>
+	        <?php echo $this->getItemHtml($_item) ?>
+	    <?php endforeach; ?>
+	</table>
+    <p>
+        <label for="rma-reason"><strong>Reason to Return</strong></label><br/>
+        <select id="rma-reason" class="validate-select" name="rma[rma_reason]">
+            <?php foreach ($reasonOptions as $rCode=>$rTitle): ?>
+                <option value="<?php echo $rCode?>"><?php echo $this->escapeHtml($rTitle)?></option>
+            <?php endforeach ?>
+        </select>
+    </p>
+	<p>
+	   <label for="rmamsg"><strong>Comments</strong></label><br/>
+	   <textarea cols="40" rows="10" name="rma[comment_text]" id="rmamsg"></textarea>
+	</p>
+	<p>
+	    <button type="button" onclick="newRmaForm.submit()" class="button btn-create-rma"><span><?php echo __('Create RMA');?></span></button>
+	</p>
+</div>
+</form>
+	<script type="text/javascript">
+require(["jquery", "prototype", 'varien/form'], function(jQuery) {
+decorateTable('new-urma-table', {'tbody' : ['odd', 'even'], 'tbody tr' : ['first', 'last']});
+window.newRmaForm = new VarienForm('new-rma-form', true);
+});
+</script>
+</div>

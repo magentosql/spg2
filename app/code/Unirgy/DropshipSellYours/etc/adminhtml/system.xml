@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="udsell" translate="label" sortOrder="332" type="text" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <label>Dropship Sell Yours</label>
+            <tab>sales</tab>
+            <resource>Unirgy_DropshipSellYours::system_config</resource>
+            <group id="form" translate="label" sortOrder="610" type="text" showInDefault="1">
+                <label>Sell Yours Form</label>
+                <field id="fieldsets" translate="label" sortOrder="10" type="select" showInDefault="1">
+                    <label>Fieldsets</label>
+                    <frontend_model>Unirgy\DropshipSellYours\Block\Adminhtml\SystemConfigField\SyFieldsetsConfig</frontend_model>
+                    <backend_model>Unirgy\DropshipSellYours\Model\SystemConfig\Backend\FieldsetsConfig</backend_model>
+                </field>
+                <field id="quick_create" translate="label" sortOrder="20" type="select" showInDefault="1">
+                    <label>Add Product Options Fields</label>
+                    <frontend_model>Unirgy\DropshipSellYours\Block\Adminhtml\SystemConfigField\SyQuickCreateConfig</frontend_model>
+                    <backend_model>Unirgy\DropshipSellYours\Model\SystemConfig\Backend\SyQuickCreateConfig</backend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

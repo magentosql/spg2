@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--preference for="Magento\Customer\Model\Customer" type="Unirgy\DropshipSellYours\Model\Customer"/>
+    <preference for="Magento\Customer\Customer" type="Unirgy\DropshipSellYours\Model\EntityCustomer"/-->
+    <preference for="Unirgy\Dropship\Block\Adminhtml\Vendor\Grid"
+                type="Unirgy\DropshipSellYours\Block\Adminhtml\VendorGrid"/>
+    <virtualType name="Unirgy\DropshipSellYours\Model\Session\Storage" type="Magento\Framework\Session\Storage">
+        <arguments>
+            <argument name="namespace" xsi:type="string">udsell</argument>
+        </arguments>
+    </virtualType>
+    <type name="Unirgy\DropshipSellYours\Model\Session">
+        <arguments>
+            <argument name="storage" xsi:type="object">Unirgy\DropshipSellYours\Model\Session\Storage</argument>
+        </arguments>
+    </type>
+</config>

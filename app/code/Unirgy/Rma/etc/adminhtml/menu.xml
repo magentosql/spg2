@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Unirgy_Rma::urma" resource="Unirgy_Rma::urma" module="Unirgy_Rma" title="Returns" sortOrder="500" action="urma/rma" parent="Unirgy_Dropship::udropship" />
+    </menu>
+</config>

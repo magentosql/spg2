@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="catalog_product_type_prepare_lite_options">
+        <observer name="udmultiprice"
+                  instance="Unirgy\DropshipMultiPrice\Observer\CatalogProductTypePrepareLiteOptions"/>
+    </event>
+    <event name="catalog_product_type_prepare_full_options">
+        <observer name="udmultiprice"
+                  instance="Unirgy\DropshipMultiPrice\Observer\CatalogProductTypePrepareFullOptions"/>
+    </event>
+    <event name="catalog_product_type_prepare_cart_options">
+        <observer name="udmultiprice"
+                  instance="Unirgy\DropshipMultiPrice\Observer\CatalogProductTypePrepareCartOptions"/>
+    </event>
+    <event name="udropship_quote_item_setUdropshipVendor">
+        <observer name="udmultiprice"
+                  instance="Unirgy\DropshipMultiPrice\Observer\UdropshipQuoteItemSetUdropshipVendor"/>
+    </event>
+    <event name="controller_front_init_before">
+        <observer name="udmultiprice" instance="Unirgy\DropshipMultiPrice\Observer\ControllerFrontInitBefore"/>
+    </event>
+    <event name="catalog_product_get_final_price">
+        <observer name="udmultiprice" instance="Unirgy\DropshipMultiPrice\Observer\CatalogProductGetFinalPrice"/>
+    </event>
+    <event name="sales_quote_product_add_after">
+        <observer name="udmultiprice" instance="Unirgy\DropshipMultiPrice\Observer\SalesQuoteProductAddAfter"/>
+    </event>
+    <event name="sales_convert_quote_item_to_order_item">
+        <observer name="udmultiprice" instance="Unirgy\DropshipMultiPrice\Observer\SalesConvertQuoteItemToOrderItem"/>
+    </event>
+    <event name="sales_quote_item_set_product">
+        <observer name="udmultiprice" instance="Unirgy\DropshipMultiPrice\Observer\SalesQuoteItemSetProduct"/>
+    </event>
+</config>

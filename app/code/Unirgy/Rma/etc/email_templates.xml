@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="sales_email_rma_template" label="New uReturn" file="urma_new.html" type="html" area="frontend"
+              module="Unirgy_Rma"/>
+    <template id="sales_email_rma_comment_template" label="uReturn Update" file="urma_update.html" type="html"
+              area="frontend" module="Unirgy_Rma"/>
+    <template id="urma_general_new_rma_vendor_email_template" label="New RMA Vendor Notification"
+              file="urma_vendor_rma.html" type="html" area="frontend" module="Unirgy_Rma"/>
+    <template id="urma_general_rma_comment_vendor_email_template" label="RMA Comment Vendor Notification"
+              file="urma_vendor_rma_comment.html" type="html" area="frontend" module="Unirgy_Rma"/>
+</config>

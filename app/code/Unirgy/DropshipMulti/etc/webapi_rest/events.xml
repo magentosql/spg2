@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="catalog_product_load_after">
+        <observer name="udmulti_front" instance="Unirgy\DropshipMulti\Observer\CatalogProductLoadAfterFront"/>
+    </event>
+    <event name="catalog_product_collection_load_after">
+        <observer name="udmulti_front" instance="Unirgy\DropshipMulti\Observer\CatalogProductCollectionLoadAfterFront"/>
+    </event>
+    <event name="sales_quote_item_collection_products_after_load">
+        <observer name="udmulti_front"
+                  instance="Unirgy\DropshipMulti\Observer\SalesQuoteItemCollectionProductsAfterLoadFront"/>
+    </event>
+</config>

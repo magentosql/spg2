@@ -1,0 +1,108 @@
+<?php
+/** @var \Unirgy\Dropship\Helper\Data $hlp */
+$hlp = \Magento\Framework\App\ObjectManager::getInstance()->get('Unirgy\Dropship\Helper\Data');
+$rmaHlp = \Magento\Framework\App\ObjectManager::getInstance()->get('Unirgy\Rma\Helper\Data');
+$shipHlp = \Magento\Framework\App\ObjectManager::getInstance()->get('Unirgy\Rma\Helper\Shipping');
+$_order = $this->getOrder() ;
+$rmaHlp->initOrderRmasCollection($_order)
+?>
+<div class="order-details-items shipments">
+<?php foreach ($_order->getRmasCollection() as $_rma):
+    $_vendor = $_rma->getVendor();
+?>
+<div class="order-title">
+    <strong><?php /* @escapeNotVerified */ echo __('RMA #') ?><?php /* @escapeNotVerified */ echo $_rma->getIncrementId(); ?> - <?php echo __($_rma->getRmaStatus()); ?></strong>
+</div>
+
+<div class="block block-order-details-view">
+    <div class="block-content">
+<?php if ($_rma->getStatusCustomerNotes()): ?>
+    <div class="box box-order-shipping-address">
+        <strong class="box-title"><span><?php echo __('General Notes') ?></span></strong>
+        <div class="box-content">
+            <?php echo $_rma->getStatusCustomerNotes(); ?>
+        </div>
+    </div>
+<?php endif; ?>
+
+<div class="box box-order-billing-address">
+    <strong class="box-title"><span><?php echo __('RMA Sender') ?></span></strong>
+    <div class="box-content">
+        <address><?php echo $hlp->formatCustomerAddress($_order->getShippingAddress(), 'html', null); ?></address>
+    </div>
+</div>
+<div class="box box-order-billing-address">
+    <strong class="box-title"><span><?php echo __('RMA Receiver') ?></span></strong>
+    <div class="box-content">
+        <address><?php echo $_vendor->getFormatedAddress('html') ?></address>
+    </div>
+</div>
+</div>
+</div>
+
+<?php $tracks = $_rma->getTracksCollection(); ?>
+<?php  if ($tracks->count()): ?>
+    <table class="data-table tracking-table" id="my-tracking-table-<?php echo $_rma->getId(); ?>">
+        <tbody>
+            <tr>
+                <td colspan="2">
+                    <a href="#" onclick="popWin('<?php echo $shipHlp->getTrackingPopupUrlBySalesModel($_rma) ?>','trackrma','width=800,height=600,top=0,left=0,resizable=yes,scrollbars=yes'); return false;" title="<?php echo __('Track this RMA') ?>"><?php echo __('Track this RMA') ?></a>
+                    <?php if ($_rma->hasPrintableTracks()): ?>
+                    <span class="separator">|</span>
+                    <a href="<?php echo $this->getUrl('urma/order/printLabel', ['order_id'=>$_order->getId(), 'rma_id'=>$_rma->getId()]) ?>" class="link-print"><?php echo __('Print Label') ?></a>
+                    <?php endif ?>
+                </td>
+            </tr>
+            <tr>
+                <th class="label"><?php echo __('Tracking Number(s):') ?></th>
+                <td>&nbsp;
+                <?php
+                $i = 1;
+                $_size = $tracks->count();
+                foreach($tracks as $track): ?>
+                <?php if($track->isCustom()): ?>
+                    <?php echo $track->getNumber() ?>
+                <?php else: ?>
+                    <a href="#" onclick="popWin('<?php echo $shipHlp->getTrackingPopupUrlBySalesModel($track) ?>','trackorder','width=800,height=600,left=0,top=0,resizable=yes,scrollbars=yes')" ><?php echo $track->getNumber() ?></a>
+                <?php endif; ?>
+                <?php if($i!=$_size): ?>, <?php endif; ?>
+                <?php $i++;
+                endforeach; ?>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <script type="text/javascript">
+require(["jquery", "prototype"], function(jQuery) {
+decorateTable('my-tracking-table-<?php echo $_rma->getId(); ?>')
+});
+</script>
+<?php  endif; ?>
+
+<div class="table-wrapper order-items-urma">
+    <table class="data table table-order-items urma" id="my-urma-table-<?php /* @escapeNotVerified */ echo $_rma->getId(); ?>">
+        <caption class="table-caption"><?php /* @escapeNotVerified */ echo __('Items Returned') ?></caption>
+        <thead>
+            <tr>
+                <th><?php echo __('Product Name') ?></th>
+                <th><?php echo __('SKU') ?></th>
+                <th><?php echo __('Condition') ?></th>
+                <th class="a-center"><span class="nobr"><?php echo __('Qty') ?></span></th>
+            </tr>
+        </thead>
+        <?php $_items = $_rma->getAllItems(); ?>
+        <?php $_count = count($_items) ?>
+        <?php foreach ($_items as $_item): ?>
+        <?php if ($_item->getOrderItem()->getParentItem()) continue; ?>
+            <?php echo $this->getItemHtml($_item) ?>
+        <?php endforeach; ?>
+    </table>
+</div>
+<script type="text/javascript">
+require(["jquery", "prototype"], function(jQuery) {
+decorateTable('my-rma-table-<?php echo $_rma->getId(); ?>', {'tbody' : ['odd', 'even'], 'tbody tr' : ['first', 'last']})
+});
+</script>
+<?php echo $this->getCommentsHtml($_rma)?>
+<?php endforeach; ?>
+</div>

@@ -4,8 +4,7 @@ return array (
   array (
     'frontName' => 'spgadmin',
   ),
-  'db' =>
-
+  'db' => 
   array (
     'connection' => 
     array (
@@ -48,20 +47,20 @@ return array (
   'MAGE_MODE' => 'developer',
   'cache_types' => 
   array (
-    'config' => 1,
-    'layout' => 1,
-    'block_html' => 1,
-    'collections' => 1,
-    'reflection' => 1,
-    'db_ddl' => 1,
-    'eav' => 1,
-    'customer_notification' => 1,
-    'target_rule' => 1,
+    'config' => 0,
+    'layout' => 0,
+    'block_html' => 0,
+    'collections' => 0,
+    'reflection' => 0,
+    'db_ddl' => 0,
+    'eav' => 0,
+    'customer_notification' => 0,
+    'target_rule' => 0,
     'full_page' => 0,
-    'config_integration' => 1,
-    'config_integration_api' => 1,
-    'translate' => 1,
-    'config_webservice' => 1,
+    'config_integration' => 0,
+    'config_integration_api' => 0,
+    'translate' => 0,
+    'config_webservice' => 0,
   ),
   'install' => 
   array (

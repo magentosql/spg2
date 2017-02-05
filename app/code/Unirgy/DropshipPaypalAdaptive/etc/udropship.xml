@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config>
+    <payout>
+        <method>
+            <paypal_adaptive translate="title">
+                <title>Paypal Adaptive</title>
+                <model>\Unirgy\DropshipPaypalAdaptive\Model\PayoutMethod\Adaptive</model>
+            </paypal_adaptive>
+        </method>
+    </payout>
+</config>

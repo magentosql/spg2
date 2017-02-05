@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<update handle="urma_rma_renderers"/>
+<body>
+    <block class="Unirgy\Rma\Block\Order\Email\Rma\Items" template="Unirgy_Rma::urma/email/order/rma/items.phtml"
+           name="items">
+        <block class="Magento\Framework\View\Element\RendererList" name="urma.rma.renderers" as="renderer.list"/>
+    </block>
+</body>
+</page>

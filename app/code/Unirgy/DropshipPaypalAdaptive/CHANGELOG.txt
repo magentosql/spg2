@@ -1,0 +1,30 @@
+===== 3.1.3 =====
+  * Fixed payment complete email sending
+
+===== 3.1.2 =====
+  * Fixed payment method not working
+  * Fixed configuration not visible for some countries in payment methods > paypal section
+  * Fixed ACL references
+
+===== 2.4.0 =====
+  * CE 1.9.2.2 compatibility
+
+===== 2.1.0 =====
+  * Central translations file
+
+===== 2.0.0 =====
+  * Major release
+  * Skip vendors on checkout that does not support paypal (only for chained payments)
+  * Fixed close order transaction when complete payment
+
+===== 1.0.3 =====
+  * Fixed totals calculation
+
+===== 1.0.2 =====
+  * Added configuration option to use parallel or chained payments
+
+===== 1.0.1 =====
+  * Fixed bare udropship compatibility abd CE1.7
+
+===== 1.0.0 =====
+  * Initial release

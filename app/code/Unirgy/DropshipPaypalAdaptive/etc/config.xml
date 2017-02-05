@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <Unirgy_DropshipPaypalAdaptive>
+            <usimpleup>
+                <remote>http://download.unirgy.com/simple/client_api/version/</remote>
+                <changelog>http://unirgy.com/support/portal/announcements</changelog>
+            </usimpleup>
+        </Unirgy_DropshipPaypalAdaptive>
+        <payment>
+            <upadaptive>
+                <model>Unirgy\DropshipPaypalAdaptive\Model\Adaptive</model>
+                <title>PayPal Adaptive</title>
+                <payment_action>Sale</payment_action>
+                <group>paypal</group>
+                <verify_peer>1</verify_peer>
+            </upadaptive>
+        </payment>
+    </default>
+</config>

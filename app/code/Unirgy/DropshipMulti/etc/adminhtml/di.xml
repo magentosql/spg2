@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Sales\Model\AdminOrder\Create" type="\Unirgy\DropshipMulti\Model\AdminOrderCreate"/>
+    <virtualType name="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="udmulti" xsi:type="array">
+                    <item name="class" xsi:type="string">Unirgy\DropshipMulti\Ui\DataProvider\Product\Form\Modifier\Vendors</item>
+                    <item name="sortOrder" xsi:type="number">1200</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Catalog\Ui\DataProvider\Product\ProductDataProvider">
+        <arguments>
+            <argument name="collectionFactory" xsi:type="object">Unirgy\DropshipMulti\Model\ResourceModel\SkipProductCollectionFactory</argument>
+        </arguments>
+    </type>
+    <type name="Magento\VisualMerchandiser\Model\Category\Products">
+        <arguments>
+            <argument name="productFactory" xsi:type="object">Unirgy\DropshipMulti\Model\SkipProductFactory</argument>
+        </arguments>
+    </type>
+    <type name="Magento\VisualMerchandiser\Model\Category\Builder">
+        <arguments>
+            <argument name="productCollectionFactory" xsi:type="object">Unirgy\DropshipMulti\Model\ResourceModel\SkipProductCollectionFactory</argument>
+        </arguments>
+    </type>
+</config>

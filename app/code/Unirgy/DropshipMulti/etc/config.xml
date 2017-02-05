@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <Unirgy_DropshipMulti>
+            <usimpleup>
+                <remote>http://download.unirgy.com/simple/client_api/version/</remote>
+                <changelog>http://unirgy.com/support/portal/announcements</changelog>
+            </usimpleup>
+        </Unirgy_DropshipMulti>
+        <udropship>
+            <stock>
+                <total_qty_method>max</total_qty_method>
+                <default_multivendor_status>1</default_multivendor_status>
+            </stock>
+        </udropship>
+    </default>
+</config>

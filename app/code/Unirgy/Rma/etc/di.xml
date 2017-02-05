@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Unirgy\Dropship\Model\Label\Batch" type="Unirgy\Rma\Model\Label\Batch"/>
+    <preference for="Unirgy\Dropship\Model\Label\Fedex" type="Unirgy\Rma\Model\Label\Fedex"/>
+    <preference for="Unirgy\Dropship\Model\Label\Ups" type="Unirgy\Rma\Model\Label\Ups"/>
+    <preference for="Unirgy\Dropship\Model\Label\Endicia" type="Unirgy\Rma\Model\Label\Endicia"/>
+    <preference for="Unirgy\Dropship\Model\Label\Pdf" type="Unirgy\Rma\Model\Label\Pdf"/>
+    <preference for="Magento\Sales\Block\Order\Comments" type="Unirgy\Rma\Block\Order\Comments"/>
+    <type name="Magento\Sales\Block\Adminhtml\Order\View">
+        <plugin name="urmaAddButton" type="Unirgy\Rma\Plugin\AdminhtmlOrderView" />
+    </type>
+    <virtualType name="urmaGridAggregator" type="Magento\Sales\Model\ResourceModel\Grid">
+        <arguments>
+            <argument name="mainTableName" xsi:type="string">urma_rma</argument>
+            <argument name="gridTableName" xsi:type="string">urma_rma_grid</argument>
+            <argument name="orderIdField" xsi:type="string">urma_rma.order_id</argument>
+            <argument name="joins" xsi:type="array">
+                <item name="sales_order" xsi:type="array">
+                    <item name="table" xsi:type="string">sales_order</item>
+                    <item name="origin_column" xsi:type="string">order_id</item>
+                    <item name="target_column" xsi:type="string">entity_id</item>
+                </item>
+                <item name="sales_shipping_address" xsi:type="array">
+                    <item name="table" xsi:type="string">sales_order_address</item>
+                    <item name="origin_column" xsi:type="string">shipping_address_id</item>
+                    <item name="target_column" xsi:type="string">entity_id</item>
+                </item>
+                <item name="sales_billing_address" xsi:type="array">
+                    <item name="table" xsi:type="string">sales_order_address</item>
+                    <item name="origin_column" xsi:type="string">billing_address_id</item>
+                    <item name="target_column" xsi:type="string">entity_id</item>
+                </item>
+                <item name="sales_order_payment" xsi:type="array">
+                    <item name="table" xsi:type="string">sales_order_payment</item>
+                    <item name="origin_column" xsi:type="string">order_id</item>
+                    <item name="target_column" xsi:type="string">parent_id</item>
+                </item>
+            </argument>
+            <argument name="columns" xsi:type="array">
+                <item name="entity_id" xsi:type="string">urma_rma.entity_id</item>
+                <item name="increment_id" xsi:type="string">urma_rma.increment_id</item>
+                <item name="store_id" xsi:type="string">urma_rma.store_id</item>
+                <item name="order_increment_id" xsi:type="string">sales_order.increment_id</item>
+                <item name="order_id" xsi:type="string">urma_rma.order_id</item>
+                <item name="order_created_at" xsi:type="string">sales_order.created_at</item>
+                <item name="customer_name" xsi:type="object">CustomerNameAggregator</item>
+                <item name="total_qty" xsi:type="string">urma_rma.total_qty</item>
+                <item name="order_status" xsi:type="string">sales_order.status</item>
+                <item name="billing_address" xsi:type="object">BillingAddressAggregator</item>
+                <item name="shipping_address" xsi:type="object">ShippingAddressAggregator</item>
+                <item name="billing_name" xsi:type="object">BillingNameAggregator</item>
+                <item name="shipping_name" xsi:type="object">ShippingNameAggregator</item>
+                <item name="customer_email" xsi:type="string">sales_order.customer_email</item>
+                <item name="customer_group_id" xsi:type="string">sales_order.customer_group_id</item>
+                <item name="payment_method" xsi:type="string">sales_order_payment.method</item>
+                <item name="shipping_information" xsi:type="string">sales_order.shipping_description</item>
+                <item name="created_at" xsi:type="string">urma_rma.created_at</item>
+                <item name="updated_at" xsi:type="string">urma_rma.updated_at</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Sales\Model\ResourceModel\GridPool">
+        <arguments>
+            <argument name="grids" xsi:type="array">
+                <item name="urma_grid" xsi:type="object">urmaGridAggregator</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="sales_order_urma_grid_data_source" xsi:type="string">Unirgy\Rma\Model\ResourceModel\Rma\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Unirgy\Rma\Model\ResourceModel\Rma\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">urma_rma_grid</argument>
+            <argument name="resourceModel" xsi:type="string">Unirgy\Rma\Model\ResourceModel\Rma</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="urmaIndexGridSyncRemove" type="Magento\Sales\Observer\GridSyncRemoveObserver">
+        <arguments>
+            <argument name="entityGrid" xsi:type="object">urmaGridAggregator</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="urmaIndexGridSyncInsert" type="Magento\Sales\Observer\GridSyncInsertObserver">
+        <arguments>
+            <argument name="entityGrid" xsi:type="object">urmaGridAggregator</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="urmaIndexGridAsyncInsert" type="Magento\Sales\Model\GridAsyncInsert">
+        <arguments>
+            <argument name="entityGrid" xsi:type="object">urmaGridAggregator</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="urmaIndexGridAsyncInsertObserver" type="Magento\Sales\Observer\GridAsyncInsertObserver">
+        <arguments>
+            <argument name="asyncInsert" xsi:type="object">urmaIndexGridAsyncInsert</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="urmaIndexGridAsyncInsertCron" type="Magento\Sales\Cron\GridAsyncInsert">
+        <arguments>
+            <argument name="asyncInsert" xsi:type="object">urmaIndexGridAsyncInsert</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\SalesSequence\Model\EntityPool">
+        <arguments>
+            <argument name="entities" xsi:type="array">
+                <item name="urma_rma" xsi:type="string">urma_rma</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="urmaRelationsComposite" type="Magento\Framework\Model\ResourceModel\Db\VersionControl\RelationComposite">
+        <arguments>
+            <argument name="relationProcessors" xsi:type="array">
+                <item name="default" xsi:type="object">Unirgy\Rma\Model\ResourceModel\Rma\Relation</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Unirgy\Rma\Model\ResourceModel\Rma">
+        <arguments>
+            <argument name="entityRelationComposite" xsi:type="object">urmaRelationsComposite</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Url\SecurityInfo">
+        <arguments>
+            <argument name="secureUrlList" xsi:type="array">
+                <item name="urma_customer" xsi:type="string">/urma/customer/</item>
+                <item name="urma_vendor" xsi:type="string">/urma/vendor/</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

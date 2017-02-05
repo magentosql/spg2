@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="udropship">
+            <group id="stock" translate="label">
+                <field id="total_qty_method" translate="label" sortOrder="10" type="select" showInDefault="1"
+                       showInWebsite="1">
+                    <label>Total Quantity Method</label>
+                    <source_model>Unirgy\DropshipMulti\Model\Source</source_model>
+                </field>
+                <field id="hide_out_of_stock" translate="label" sortOrder="100" type="select" showInDefault="1"
+                       showInWebsite="1">
+                    <label>Hide out of stock vendors</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="default_multivendor_status" translate="label" sortOrder="100" type="select" showInDefault="1"
+                       showInWebsite="1">
+                    <label>Default status for product multivendor data</label>
+                    <source_model>Unirgy\DropshipMulti\Model\Source</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

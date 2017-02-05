@@ -1,0 +1,72 @@
+<?php
+/** @var \Unirgy\Dropship\Helper\Data $_hlp */
+$_hlp = \Magento\Framework\App\ObjectManager::getInstance()->get('Unirgy\Dropship\Helper\Data');
+$_rmaHlp = $_hlp->getObj('Unirgy\Rma\Helper\Data');
+?>
+<?php  $_rma = $this->getRma() ?>
+<?php  $_vendor = $_rma->getVendor() ?>
+<?php  $_order = $this->getRma()->getOrder() ?>
+
+<?php echo $this->getChildHtml('order_info') ?>
+
+<section class="admin__page-section" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+    <div class="admin__page-section-title">
+        <span class="title"><?php /* @escapeNotVerified */ echo __('Return Information') ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item order-billing-address">
+            <?php /* Billing Address */?>
+            <div class="admin__page-section-item-title">
+                <span class="title"><?php echo __('Return Sender') ?></span>
+            </div>
+            <address class="admin__page-section-item-content">
+                <?php echo $_hlp->formatCustomerAddress($_order->getShippingAddress(), 'html', null); ?>
+            </address>
+        </div>
+        <div class="admin__page-section-item order-shipping-address">
+            <?php /* Shipping Address */ ?>
+            <div class="admin__page-section-item-title">
+                    <span class="title"><?php echo __('Return Receiver') ?></span>
+            </div>
+            <address class="admin__page-section-item-content">
+                <?php echo $_vendor->getFormatedAddress('html') ?>
+            </address>
+        </div>
+    </div>
+</section>
+<section class="admin__page-section" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+    <div class="admin__page-section-title">
+        <span class="title"><?php /* @escapeNotVerified */ echo __('Return Tracking Info') ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item order-comments-history">
+            <div class="admin__page-section-item-content">
+                <?php echo $this->getChildHtml('rma_tracking') ?>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="admin__page-section">
+    <div class="admin__page-section-title">
+        <span class="title"><?php /* @escapeNotVerified */ echo __('Items Returned') ?></span>
+    </div>
+    <div class="admin__page-section-item-content">
+    <?php echo $this->getChildHtml('rma_items') ?>
+    </div>
+</section>
+
+<section class="admin__page-section">
+    <div class="admin__page-section-title">
+        <span class="title"><?php /* @escapeNotVerified */ echo __('Return Total') ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item order-comments-history">
+            <div class="admin__page-section-item-title">
+                <span class="title"><?php /* @escapeNotVerified */ echo __('Return History') ?></span>
+            </div>
+            <?php echo $block->getChildHtml('order_comments') ?>
+        </div>
+    </div>
+</section>
+

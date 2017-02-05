@@ -1,0 +1,9 @@
+.udmulti-vendors-fieldset > .admin__field-control {
+    width: 100% !important;
+}
+.udmulti-vendors-fieldset fieldset.admin__field {
+    width: 100px
+}
+.udmulti-vendors-tierprice > .admin__field-control {
+    width: 100% !important;
+}
