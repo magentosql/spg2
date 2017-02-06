@@ -1,7 +1,3 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: bao
- * Date: 06/02/2017
- * Time: 14:46
- */
+\Magento\Framework\Component\ComponentRegistrar::register(\Magento\Framework\Component\ComponentRegistrar::MODULE,
+    'SPG_Barcode', __DIR__);
