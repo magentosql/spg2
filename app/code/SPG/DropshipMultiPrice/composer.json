@@ -1,0 +1,28 @@
+{
+    "name": "SPG\/DropshipMultiPrice",
+    "description": "",
+    "require": {
+        "php": "~5.5.0|~5.6.0"
+    },
+    "type": "magento2-module",
+    "version": "0.0.1",
+    "license": [
+        "MIT"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "SPG\\DropshipMultiPrice\\": ""
+        }
+    },
+    "extra": {
+        "map": [
+            [
+                "*",
+                "SPG\/DropshipMultiPrice"
+            ]
+        ]
+    }
+}
