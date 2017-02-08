@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="Triet_SimpleNews::main_menu" title="Simple News"
+             module="Triet_SimpleNews" sortOrder="20"
+             resource="Triet_SimpleNews::simplenews" />
+        <add id="Triet_SimpleNews::add_news" title="Add News"
+             module="Triet_SimpleNews" sortOrder="1" parent="Triet_SimpleNews::main_menu"
+             action="simplenews/news/new" resource="Triet_SimpleNews::manage_news" />
+        <add id="Triet_SimpleNews::manage_news" title="Manage News"
+             module="Triet_SimpleNews" sortOrder="2" parent="Triet_SimpleNews::main_menu"
+             action="simplenews/news/index" resource="Triet_SimpleNews::manage_news" />
+        <add id="Triet_SimpleNews::configuration" title="Configurations"
+             module="Triet_SimpleNews" sortOrder="3" parent="Triet_SimpleNews::main_menu"
+             action="adminhtml/system_config/edit/section/simplenews"
+             resource="Triet_SimpleNews::configuration" />
+    </menu>
+</config>

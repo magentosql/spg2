@@ -16,7 +16,6 @@ if (($isCfgMode = $_product->getConfigureMode())) {
     $preCfgVid = $_product->getPreconfiguredUdropshipVendor();
 }
 
-
 ?>
 <?php if ($vendors = $_product->getMultiVendorData()): ?>
     <?php extract($_hlp->getGroupedMultipriceData($_product)); ?>
