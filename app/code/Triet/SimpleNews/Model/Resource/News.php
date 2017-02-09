@@ -1,6 +1,6 @@
 <?php
 
-namespace VM\SimpleNews\Model\Resource;
+namespace Triet\SimpleNews\Model\Resource;
 
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
@@ -11,6 +11,6 @@ class News extends AbstractDb
      */
     protected function _construct()
     {
-        $this->_init('triet_simplenews', 'id');
+        $this->_init('spg_triet_simplenews', 'id');
     }
 }

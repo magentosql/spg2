@@ -33,7 +33,7 @@ class Edit extends News
  
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->_resultPageFactory->create();
-        $resultPage->setActiveMenu('VM_SimpleNews::main_menu');
+        $resultPage->setActiveMenu('Triet_SimpleNews::main_menu');
         $resultPage->getConfig()->getTitle()->prepend(__('Simple News'));
  
         return $resultPage;
